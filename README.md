@@ -1,5 +1,5 @@
 # Java Bloom Filter library
-My Bloom Filter<sup>[1](#fn1)</sup>, Scalable Bloom Filter<sup>[1](#fn2)</sup> and A2 Bloom Filter<sup>[3](#fn3)</sup> implemetation in Java
+My Bloom Filter<sup>[1](#fn1)</sup>, Scalable Bloom Filter<sup>[2](#fn2)</sup> and A2 Bloom Filter<sup>[3](#fn3)</sup> implemetation in Java
 
 ## Bibliography
 - <a name="fn1">[1] </a>: Bloom, Burton H. "Space/time trade-offs in hash coding with allowable errors." Communications of the ACM 13.7 (1970): 422-426.
