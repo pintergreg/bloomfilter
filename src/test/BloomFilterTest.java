@@ -19,8 +19,6 @@ import java.nio.ByteBuffer;
 import pintergreg.bloomfilter.A2BloomFilter;
 import pintergreg.bloomfilter.BloomFilter;
 import pintergreg.bloomfilter.ScalableBloomFilter;
-import pintergreg.timedbloomfilter.TBF;
-import pintergreg.timedbloomfilter.TimedBloomFilter;
 
 public class BloomFilterTest {
     
@@ -45,43 +43,6 @@ public class BloomFilterTest {
         System.out.println(bf.include("alma".getBytes())); // Expected output: True
         System.out.println(bf.include("körte".getBytes())); // Expected output: True
         System.out.println(bf.include("szilva".getBytes())); // Expected output: False
-    }
-    
-    private static void simpleTimingTest() throws InterruptedException {
-        TimedBloomFilter tbf = new TimedBloomFilter(1000, 3, 2);
-
-//        System.out.println(tbf.include("alma"));
-//        System.out.println(tbf.include("körte"));
-//        System.out.println(tbf.include("szilva"));
-        tbf.startTimer();
-        tbf.add("alma");
-        tbf.add("körte");
-        System.out.println(tbf.include("körte"));
-        System.out.println(tbf.include("szilva"));
-        System.out.println(tbf.getTime());
-        Thread.sleep(3000);
-        System.out.println(tbf.getTime());
-        
-        System.out.println(tbf.include("körte"));
-        System.out.println(tbf.include("szilva"));
-        tbf.stopTimer();
-    }
-    
-    private static void TBFTest() throws InterruptedException {
-        TBF tbf = new TBF(1000, 3, 2);
-        
-        tbf.startTimer();
-        tbf.add("alma");
-        tbf.add("körte");
-        System.out.println(tbf.include("körte"));
-        System.out.println(tbf.include("szilva"));
-        System.out.println(tbf.getTime());
-        Thread.sleep(3000);
-        System.out.println(tbf.getTime());
-        
-        System.out.println(tbf.include("körte"));
-        tbf.stopTimer();
-        
     }
 
     /**
