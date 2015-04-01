@@ -126,4 +126,13 @@ public class ScalableBloomFilter {
         bloomFilters.getFirst().clear();
 
     }
+    
+    /**
+     * Gets the number of (Extended) Bloom Filters stored in the Linked List,
+     * mainly for debugging purposes.
+     * @return the size of the Linked List
+     */
+    public int getSize(){
+        return bloomFilters.size();
+    }
 }

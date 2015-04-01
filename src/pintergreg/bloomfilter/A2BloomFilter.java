@@ -15,7 +15,6 @@
  */
 package pintergreg.bloomfilter;
 
-import pintergreg.timedbloomfilter.TimedBloomFilter;
 import static java.lang.Thread.sleep;
 import java.nio.ByteBuffer;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -133,7 +132,7 @@ public class A2BloomFilter {
                         sleep(ttl);
                         switchActive();
                     } catch (InterruptedException ex) {
-                        Logger.getLogger(TimedBloomFilter.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(A2BloomFilter.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
 
