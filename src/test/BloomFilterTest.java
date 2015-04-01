@@ -16,7 +16,6 @@
 
 package test;
 
-import java.lang.instrument.Instrumentation;
 import pintergreg.bloomfilter.A2BloomFilter;
 import pintergreg.bloomfilter.BloomFilter;
 import pintergreg.timedbloomfilter.TBF;
@@ -24,8 +23,6 @@ import pintergreg.timedbloomfilter.TimedBloomFilter;
 
 public class BloomFilterTest {
     
-    private static Instrumentation instrumentation;
-
     public static void main(String[] args) throws InterruptedException{
 
         A2BFTest();
@@ -83,19 +80,33 @@ public class BloomFilterTest {
         
     }
     
+    /**
+     * Test for A2 Bloom Filter
+     * @throws InterruptedException 
+     */
     private static void A2BFTest() throws InterruptedException{
-        A2BloomFilter bf=new A2BloomFilter(1000, 3, 1000);
+        // Create an A2 Bloom Filter for storing 1000 elements 
+        // with 0.001 false positive rate and 1000 msec time to live parameter
+        A2BloomFilter bf=new A2BloomFilter(1000, 0.001, 1000);
         
+        // Start timer
         bf.startTimer();
+        
+        // Add two elements to the Bloom Filter
         bf.add("alma".getBytes());
         bf.add("körte".getBytes());
-        System.out.println(bf.include("körte".getBytes()));
-        System.out.println(bf.include("szilva".getBytes()));
+        
+        // Test for two elements, the second added and a never added one
+        System.out.println(bf.include("körte".getBytes())); // Expected output: True
+        System.out.println(bf.include("szilva".getBytes())); //Expected output: False
+        
+        // Wait for 2 seconds
+        Thread.sleep(2000);
 
-        Thread.sleep(2100);
-
-        System.out.println(bf.include("körte".getBytes()));
-        //System.out.println(tbf.include("szilva"));
+        // And test the second added element
+        System.out.println(bf.include("körte".getBytes())); //Expected output: False
+        
+        // Finally Stop timer
         bf.stopTimer();
         
     }
