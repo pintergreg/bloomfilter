@@ -1,6 +1,9 @@
 # Java Bloom Filter library
-My Bloom Filter<sup>[1](#fn1)</sup>, Scalable Bloom Filter<sup>[2](#fn2)</sup> and A2 Bloom Filter<sup>[3](#fn3)</sup> implemetation in Java 
-Licenced under Apache v2, repository contains a NetBeans project
+
+![Apache v2](https://img.shields.io/hexpm/l/plug.svg)
+
+My Bloom Filter<sup>[1](#fn1)</sup>, Scalable Bloom Filter<sup>[2](#fn2)</sup> and A2 Bloom Filter<sup>[3](#fn3)</sup> implemetation in Java for my Master's Thesis. The repository contains a NetBeans project and it is still under development.
+ 
 
 ## Containing classes
 * BloomFilter
