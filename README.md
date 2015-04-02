@@ -10,7 +10,7 @@ Licenced under Apache v2, repository contains a NetBeans project
 * ScalableBloomFilter
 	* Implementation of Scalable Bloom Filter that extends its capacity dynamically if the Bloom Filter gets saturated. This extension means creating new Bloom Filters that are linked through a LinkedList.
 * A2BloomFilter
-	* A2 Bloom Filter consists of two @{link ScalableBloomFilter}. Elements added to the active one and at one time only one of them is active, but both of them is read when an element is searched. Active is changed after the given time and the new active is cleared. In this way an element is surely in the Bloom Filter at least for the specified time.
+	* A2 Bloom Filter consists of two ScalableBloomFilter. Elements added to the active one and at one time only one of them is active, but both of them is read when an element is searched. Active is changed after the given time and the new active is cleared. In this way an element is surely in the Bloom Filter at least for the specified time.
 * BloomFilterUtils
 	* Common methods for Bloom Filter implementations
 
