@@ -32,6 +32,9 @@ public class ExtendedBloomFilter extends BloomFilter {
      *
      * @param m - size of the bitvector
      * @param k - number of the hash functions
+     *
+     * It is not recommended to use this constructor, unless you really know
+     * what you do
      */
     public ExtendedBloomFilter(int m, int k) {
         super(m, k);

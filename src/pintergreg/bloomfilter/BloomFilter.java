@@ -19,6 +19,7 @@ import java.util.BitSet;
 
 /**
  * Basic Bloom Filter implementation
+ *
  * @author Gergő Pintér
  */
 public class BloomFilter {
@@ -34,6 +35,9 @@ public class BloomFilter {
      *
      * @param m - size of the bitvector
      * @param k - number of the hash functions
+     *
+     * It is not recommended to use this constructor, unless you really know
+     * what you do
      */
     public BloomFilter(int m, int k) {
         this.m = m;
@@ -58,7 +62,8 @@ public class BloomFilter {
 
     /**
      * Add item to Bloom Filter
-     * @param key - an item to be added to the Bloom Filter 
+     *
+     * @param key - an item to be added to the Bloom Filter
      */
     public void add(byte[] key) {
 
@@ -69,6 +74,7 @@ public class BloomFilter {
 
     /**
      * Search item in the Bloom Filter
+     *
      * @param key - an item to be searched in the Bloom Filter
      * @return True if Bloom Filter contains the given item, False otherwise
      */

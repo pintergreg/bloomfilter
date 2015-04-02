@@ -47,6 +47,9 @@ public class A2BloomFilter {
      * @param k - number of the hash functions
      * @param ttl - time to live, it determines in milliseconds how long the
      * elements need to be alive, be in the Bloom Filter
+     *
+     * It is not recommended to use this constructor, unless you really know
+     * what you do
      */
     public A2BloomFilter(int m, int k, int ttl) {
         this.m = m;
@@ -66,11 +69,13 @@ public class A2BloomFilter {
      * elements need to be alive, be in the Bloom Filter
      */
     public A2BloomFilter(int n, double p, int ttl) {
-        //TODO ttl × n should be used instead of n? Yeah, for throughput options
         this.ttl = ttl;
+        //TODO ttl × n should be used instead of n? Yeah, for throughput options
+        //this.m = BloomFilterUtils.determineSize(n * ttl, p);
+        //this.k = BloomFilterUtils.determineHashNumber(this.m, n * ttl);
         this.m = BloomFilterUtils.determineSize(n, p);
         this.k = BloomFilterUtils.determineHashNumber(this.m, n);
-        
+
         bloomFilters[0] = new ScalableBloomFilter(this.m, this.k);
         bloomFilters[1] = new ScalableBloomFilter(this.m, this.k);
     }

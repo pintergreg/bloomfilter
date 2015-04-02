@@ -38,6 +38,9 @@ public class ScalableBloomFilter {
      *
      * @param m - size of the bitvector
      * @param k - number of the hash functions
+     *
+     * It is not recommended to use this constructor, unless you really know
+     * what you do
      */
     public ScalableBloomFilter(int m, int k) {
         this.m = m;
@@ -91,7 +94,7 @@ public class ScalableBloomFilter {
         }
         return result;
     }
-    
+
     /**
      * Search item in the Scalable Bloom Filter
      *
@@ -126,13 +129,14 @@ public class ScalableBloomFilter {
         bloomFilters.getFirst().clear();
 
     }
-    
+
     /**
      * Gets the number of (Extended) Bloom Filters stored in the Linked List,
      * mainly for debugging purposes.
+     *
      * @return the size of the Linked List
      */
-    public int getSize(){
+    public int getSize() {
         return bloomFilters.size();
     }
 }
