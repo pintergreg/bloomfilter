@@ -78,6 +78,8 @@ public class A2BloomFilter {
 
         bloomFilters[0] = new ScalableBloomFilter(this.m, this.k);
         bloomFilters[1] = new ScalableBloomFilter(this.m, this.k);
+        
+        startTimer();
     }
 
     /**
@@ -127,7 +129,7 @@ public class A2BloomFilter {
      * Starts the timer that ages the element according to the givel Time To
      * Live value
      */
-    public void startTimer() {
+    private void startTimer() {
         new Thread("") {
             @Override
             public void run() {

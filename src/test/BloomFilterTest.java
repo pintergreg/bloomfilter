@@ -72,7 +72,7 @@ public class BloomFilterTest {
         A2BloomFilter bf = new A2BloomFilter(1000, 0.001, 1000);
 
         // Start timer
-        bf.startTimer();
+        //bf.startTimer();
 
         // Add two elements to the Bloom Filter
         bf.add("alma".getBytes());

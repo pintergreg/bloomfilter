@@ -15,8 +15,6 @@
  */
 package pintergreg.bloomfilter;
 
-import ie.ucd.murmur.MurmurHash;
-
 /**
  * Common methods for Bloom Filter implementations
  *
@@ -36,7 +34,7 @@ public class BloomFilterUtils {
      */
     public static int[] multiHash(byte[] key, int k, int m) {
         int[] result = new int[k];
-        long h = MurmurHash.hash64(key, key.length); // get a 64 bit Murmur hash
+        long h = redis.clients.util.MurmurHash.hash64A(key, 42); // get a 64 bit Murmur hash
         int a = (int) ((h & 0xFFFFFFFF00000000L) >> 32); // get higher bits
         int b = (int) (h & 0xFFFFFFFF); // get lower bits
 
