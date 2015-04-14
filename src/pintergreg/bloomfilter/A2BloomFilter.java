@@ -55,8 +55,9 @@ public class A2BloomFilter {
         this.m = m;
         this.k = k;
         this.ttl = ttl;
-        bloomFilters[0] = new ScalableBloomFilter(this.m, this.k);
-        bloomFilters[1] = new ScalableBloomFilter(this.m, this.k);
+        // using ttl × m for throughput options
+        bloomFilters[0] = new ScalableBloomFilter(this.m * this.ttl, this.k);
+        bloomFilters[1] = new ScalableBloomFilter(this.m * this.ttl, this.k);
     }
 
     /**
@@ -70,11 +71,12 @@ public class A2BloomFilter {
      */
     public A2BloomFilter(int n, double p, int ttl) {
         this.ttl = ttl;
-        //TODO ttl × n should be used instead of n? Yeah, for throughput options
-        //this.m = BloomFilterUtils.determineSize(n * ttl, p);
-        //this.k = BloomFilterUtils.determineHashNumber(this.m, n * ttl);
-        this.m = BloomFilterUtils.determineSize(n, p);
-        this.k = BloomFilterUtils.determineHashNumber(this.m, n);
+        // the user given p should be valid for the two Bloom Filter, 
+        // so q means the false posizitive probablity for one Bloom Filter 
+        double q = 1 - Math.sqrt(1 - p);
+        // using ttl × n for throughput options
+        this.m = BloomFilterUtils.determineSize(n * ttl, q);
+        this.k = BloomFilterUtils.determineHashNumber(this.m, n * ttl);
 
         bloomFilters[0] = new ScalableBloomFilter(this.m, this.k);
         bloomFilters[1] = new ScalableBloomFilter(this.m, this.k);
