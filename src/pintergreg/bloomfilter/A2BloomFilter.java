@@ -31,7 +31,7 @@ import java.util.logging.Logger;
  *
  * @author Gergő Pintér
  */
-public class A2BloomFilter implements Serializable{
+public class A2BloomFilter implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private ScalableBloomFilter[] bloomFilters = new ScalableBloomFilter[2];
@@ -47,8 +47,9 @@ public class A2BloomFilter implements Serializable{
      *
      * @param m - size of the bitvector
      * @param k - number of the hash functions
-     * @param ttl - time to live, it determines in milliseconds how long the
-     * elements need to be alive, be in the Bloom Filter
+     * @param ttl - time to live, it determines in milliseconds at least how
+     * long the elements need to be alive, be in the Bloom Filter. Elements are
+     * in the Bloom Filter at most 2×ttl time.
      *
      * It is not recommended to use this constructor, unless you really know
      * what you do
@@ -67,8 +68,9 @@ public class A2BloomFilter implements Serializable{
      *
      * @param n - number of elements to be stored
      * @param p - false positive probability
-     * @param ttl - time to live, it determines in milliseconds how long the
-     * elements need to be alive, be in the Bloom Filter
+     * @param ttl - time to live, it determines in milliseconds at least how
+     * long the elements need to be alive, be in the Bloom Filter. Elements are
+     * in the Bloom Filter at most 2×ttl time.
      */
     public A2BloomFilter(int n, double p, int ttl) {
         this.ttl = ttl;
@@ -80,7 +82,7 @@ public class A2BloomFilter implements Serializable{
 
         bloomFilters[0] = new ScalableBloomFilter(this.m, this.k);
         bloomFilters[1] = new ScalableBloomFilter(this.m, this.k);
-        
+
         startTimer();
     }
 

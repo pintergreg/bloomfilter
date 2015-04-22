@@ -24,8 +24,12 @@ public class BloomFilterTest {
     
     public static void main(String[] args) throws InterruptedException {
         
+        System.out.println("Testing Basic Bloom Filter\n\texpected output: True, True, False");
+        basicBloomFilterTest();
+        System.out.println("\nTesting Scalable Bloom Filter\n\texpected output: 2");
+        ScalableBloomFilterTest();
+        System.out.println("\nTesting A2 Bloom Filter\n\texpected output: True, False, True, False");
         A2BloomFilterTest();
-        
     }
 
     /**
@@ -82,8 +86,11 @@ public class BloomFilterTest {
         System.out.println(bf.include("körte".getBytes())); // Expected output: True
         System.out.println(bf.include("szilva".getBytes())); //Expected output: False
 
-        // Wait for 2 seconds
-        Thread.sleep(2000);
+        // Wait for 0.75 seconds
+        Thread.sleep(750);
+        System.out.println(bf.include("körte".getBytes())); // Expected output: True
+        // Wait for 1.5 seconds
+        Thread.sleep(1500);
 
         // And test the second added element
         System.out.println(bf.include("körte".getBytes())); //Expected output: False
