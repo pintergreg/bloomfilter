@@ -15,13 +15,17 @@
  */
 package pintergreg.bloomfilter;
 
+import java.io.Serializable;
+
 /**
  * Extended version of @{link BloomFilter}, that adds size parameter to follow
  * the number of included elements, and the relevant methods.
  *
  * @author Gergő Pintér
  */
-public class ExtendedBloomFilter extends BloomFilter {
+public class ExtendedBloomFilter extends BloomFilter implements Serializable{
+    
+    private static final long serialVersionUID = 1L;
 
     private int size;
     private final int n;

@@ -15,6 +15,7 @@
  */
 package pintergreg.bloomfilter;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.ListIterator;
 
@@ -25,7 +26,9 @@ import java.util.ListIterator;
  *
  * @author Gergő Pintér
  */
-public class ScalableBloomFilter {
+public class ScalableBloomFilter implements Serializable{
+    
+    private static final long serialVersionUID = 1L;
 
     private LinkedList<ExtendedBloomFilter> bloomFilters = new LinkedList<>();
     ListIterator<ExtendedBloomFilter> listIterator;

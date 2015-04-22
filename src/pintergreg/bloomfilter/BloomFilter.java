@@ -15,6 +15,7 @@
  */
 package pintergreg.bloomfilter;
 
+import java.io.Serializable;
 import java.util.BitSet;
 
 /**
@@ -22,7 +23,9 @@ import java.util.BitSet;
  *
  * @author Gergő Pintér
  */
-public class BloomFilter {
+public class BloomFilter implements Serializable{
+    
+    private static final long serialVersionUID = 1L;
 
     protected int m;
     protected int k;

@@ -15,6 +15,7 @@
  */
 package pintergreg.bloomfilter;
 
+import java.io.Serializable;
 import static java.lang.Thread.sleep;
 import java.nio.ByteBuffer;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -30,8 +31,9 @@ import java.util.logging.Logger;
  *
  * @author Gergő Pintér
  */
-public class A2BloomFilter {
+public class A2BloomFilter implements Serializable{
 
+    private static final long serialVersionUID = 1L;
     private ScalableBloomFilter[] bloomFilters = new ScalableBloomFilter[2];
     private final int m;
     private final int k;

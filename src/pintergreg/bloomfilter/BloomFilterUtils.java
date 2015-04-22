@@ -15,12 +15,16 @@
  */
 package pintergreg.bloomfilter;
 
+import java.io.Serializable;
+
 /**
  * Common methods for Bloom Filter implementations
  *
  * @author Gergő Pintér
  */
-public class BloomFilterUtils {
+public class BloomFilterUtils implements Serializable{
+    
+    private static final long serialVersionUID = 1L;
 
     /**
      * Calculates k pseudo hash for the given key and maps them to an m long
