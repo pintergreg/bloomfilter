@@ -158,15 +158,14 @@ public class A2BloomFilter implements Serializable {
     /**
      * Stops the timer that ages the element according to the givel Time To Live
      * value
-     * @throws java.lang.InterruptedException
      */
-    public void stopTimer() throws InterruptedException {
+    public void stopTimer() {
         stop = true;
-        
-        if (thread.isAlive()){
+
+        if (thread.isAlive()) {
             thread.interrupt();
         }
-        
+
     }
 
     /**
