@@ -38,8 +38,9 @@ public class A2BloomFilter implements Serializable {
     private final int m;
     private final int k;
     private final int ttl;
-    public static boolean stop = false;
+    public boolean stop = false;
     private AtomicInteger active = new AtomicInteger(0);
+    private Thread thread;
 
     /**
      * Create A2 Bloom Filter based on bitvector size, the numbers of hash
@@ -134,7 +135,7 @@ public class A2BloomFilter implements Serializable {
      * Live value
      */
     private void startTimer() {
-        new Thread("") {
+        thread = new Thread() {
             @Override
             public void run() {
 
@@ -143,21 +144,29 @@ public class A2BloomFilter implements Serializable {
                         sleep(ttl);
                         switchActive();
                     } catch (InterruptedException ex) {
-                        Logger.getLogger(A2BloomFilter.class.getName()).log(Level.SEVERE, null, ex);
+                        stop = true;
+                        //Logger.getLogger(A2BloomFilter.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
 
             }
-        }.start();
+        };
+        thread.start();
 
     }
 
     /**
      * Stops the timer that ages the element according to the givel Time To Live
      * value
+     * @throws java.lang.InterruptedException
      */
-    public void stopTimer() {
+    public void stopTimer() throws InterruptedException {
         stop = true;
+        
+        if (thread.isAlive()){
+            thread.interrupt();
+        }
+        
     }
 
     /**
