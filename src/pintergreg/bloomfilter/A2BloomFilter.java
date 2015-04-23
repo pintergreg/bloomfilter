@@ -38,7 +38,7 @@ public class A2BloomFilter implements Serializable {
     private final int m;
     private final int k;
     private final int ttl;
-    public boolean stop = false;
+    private boolean stop = false;
     private AtomicInteger active = new AtomicInteger(0);
     private Thread thread;
 
@@ -136,8 +136,8 @@ public class A2BloomFilter implements Serializable {
      */
     private void startTimer() {
         thread = new TimerThread();
+        thread.setDaemon(true);
         thread.start();
-
     }
 
     /**
@@ -145,10 +145,12 @@ public class A2BloomFilter implements Serializable {
      * value
      */
     public void stopTimer() {
-        stop = true;
+        this.stop = true;
 
-        if (thread.isAlive()) {
-            thread.interrupt();
+        if (this.thread.isAlive()) {
+        //if (!this.thread.isInterrupted()) {
+            this.thread.interrupt();
+        } else {
         }
 
     }
