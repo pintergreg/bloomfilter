@@ -131,26 +131,11 @@ public class A2BloomFilter implements Serializable {
 
     /* .......... TIMEING .......... */
     /**
-     * Starts the timer that ages the element according to the givel Time To
-     * Live value
+     * Starts the timer thread that ages the element according to the given Time
+     * To Live value
      */
     private void startTimer() {
-        thread = new Thread() {
-            @Override
-            public void run() {
-
-                while (!stop) {
-                    try {
-                        sleep(ttl);
-                        switchActive();
-                    } catch (InterruptedException ex) {
-                        stop = true;
-                        //Logger.getLogger(A2BloomFilter.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-
-            }
-        };
+        thread = new TimerThread();
         thread.start();
 
     }
@@ -177,5 +162,29 @@ public class A2BloomFilter implements Serializable {
         this.bloomFilters[nextActive].clear();
         this.active.set(nextActive);
     }
+
+    /**
+     * Timer Thread class that ages the element according to the given Time To
+     * Live value
+     */
+    private class TimerThread extends Thread implements Serializable {
+
+        private static final long serialVersionUID = 1L;
+
+        @Override
+        public void run() {
+
+            while (!stop) {
+                try {
+                    sleep(ttl);
+                    switchActive();
+                } catch (InterruptedException ex) {
+                    stop = true;
+                    //Logger.getLogger(A2BloomFilter.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+        }
+    };
 
 }
