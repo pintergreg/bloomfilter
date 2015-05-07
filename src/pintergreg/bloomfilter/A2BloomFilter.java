@@ -19,8 +19,6 @@ import java.io.Serializable;
 import static java.lang.Thread.sleep;
 import java.nio.ByteBuffer;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * A2 Bloom Filter consists of two @{link ScalableBloomFilter}. Elements added
@@ -148,7 +146,6 @@ public class A2BloomFilter implements Serializable {
         this.stop = true;
 
         if (this.thread.isAlive()) {
-        //if (!this.thread.isInterrupted()) {
             this.thread.interrupt();
         } else {
         }
@@ -182,7 +179,6 @@ public class A2BloomFilter implements Serializable {
                     switchActive();
                 } catch (InterruptedException ex) {
                     stop = true;
-                    //Logger.getLogger(A2BloomFilter.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
 
