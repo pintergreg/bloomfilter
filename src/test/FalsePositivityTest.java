@@ -31,6 +31,11 @@ public class FalsePositivityTest {
 
     public static void main(String[] args) {
 
+        // Bloom Filter created for storing one million element with the false positive rate of 0.001
+        // Storing one million element and testing them, whether they are in or not. 
+        // All of the shoud be in, so one million positive answer expected.
+        // Then searching one million different element, the were not stored and 
+        // the positive answer should be around 1000. This repeated 10 times.
         for (int i = 0; i < 10; i++) {
             test(1000000, 0.001);
         }
